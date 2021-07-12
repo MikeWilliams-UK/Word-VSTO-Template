@@ -14,3 +14,6 @@ Using Visual Studio 2019 [16.10.3] create a new Word VSTO Template project
 
 ![image](https://user-images.githubusercontent.com/13162784/125308562-eb407880-e328-11eb-8191-53ef8fa46194.png)
 
+Once project is created add simple class to log events, then run the project
+
+![image](https://user-images.githubusercontent.com/13162784/125314259-f21dba00-e32d-11eb-99da-3f9c093e9753.png)
