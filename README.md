@@ -1,6 +1,6 @@
 # Word-VSTO-Template
 
-Windows 10 (2004)
+Windows 10 (20H2)
 
 Microsoft 365 Apps for enterprise [13127.21668 CtR]
 
