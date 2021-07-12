@@ -11,3 +11,6 @@ Using Visual Studio 2019 [16.10.3] create a new Word VSTO Template project
 ![image](https://user-images.githubusercontent.com/13162784/125306078-ccd97d80-e326-11eb-941d-d34fd5446553.png)
 
 ![image](https://user-images.githubusercontent.com/13162784/125306098-d19e3180-e326-11eb-84cc-1c61d52a5a07.png)
+
+![image](https://user-images.githubusercontent.com/13162784/125308562-eb407880-e328-11eb-8191-53ef8fa46194.png)
+
