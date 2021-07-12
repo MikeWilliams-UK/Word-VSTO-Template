@@ -1,7 +1,8 @@
 # Word-VSTO-Template
 
 Windows 10 (2004)
-Microsoft 365 Apps for enterprise
+
+Microsoft 365 Apps for enterprise [13127.21668 CtR]
 
 Using Visual Studio 2019 [16.10.3] create a new Word VSTO Template project
 
