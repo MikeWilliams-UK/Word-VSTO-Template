@@ -20,8 +20,14 @@ Once project is created add simple class to log events, then run the project
 
 Save documnt to C:\Temp
 
-Open document from C:\Temp
+Browse to C:\Temp
+Double click to open document from C:\Temp
 
 ![image](https://user-images.githubusercontent.com/13162784/125315094-b1727080-e32e-11eb-96a0-7638830836f1.png)
 ![image](https://user-images.githubusercontent.com/13162784/125315253-d5ce4d00-e32e-11eb-9cb6-5e5c5217d698.png)
 
+Copy files from bin\Debug into C:\Temp
+
+Double click to open document from C:\Temp
+
+![image](https://user-images.githubusercontent.com/13162784/125315600-3493c680-e32f-11eb-9067-88b9cb8e455f.png)
