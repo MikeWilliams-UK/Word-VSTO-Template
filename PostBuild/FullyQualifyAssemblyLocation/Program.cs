@@ -1,46 +1,61 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DocumentFormat.OpenXml.CustomProperties;
 using DocumentFormat.OpenXml.Packaging;
-using Microsoft.VisualStudio.Tools.Applications;
+using System.Linq;
+using DocumentFormat.OpenXml;
+using Vt = DocumentFormat.OpenXml.VariantTypes;
 
 namespace FullyQualifyAssemblyLocation
 {
-    class Program
+    public static class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            string[] parts;
+            string[] parts = null;
 
-            using (WordprocessingDocument template = WordprocessingDocument.Open(args[0], false))
+            using (WordprocessingDocument template = WordprocessingDocument.Open(args[0], true))
             {
-                var customPropertiesPart = template.CustomFilePropertiesPart;
-                var props = template.CustomFilePropertiesPart.Properties;
-                var prop = props.FirstChild;
+                if (template.CustomFilePropertiesPart != null)
+                {
+                    var customProperties = template.CustomFilePropertiesPart.Properties;
 
-                parts = prop.InnerText.Split('|');
-                parts[0] = args[0];
-                template.Close();
+                    foreach (var customProperty in customProperties)
+                    {
+                        if (customProperty.InnerText.Contains("|vstolocal"))
+                        {
+                            parts = customProperty.InnerText.Split('|');
+                            parts[0] = args[0].Replace(".dotx", ".vsto");
+                        }
+                    }
+
+                    if (parts != null)
+                    {
+                        customProperties.RemoveAllChildren();
+                        customProperties.Append(NewProperty(2, "_AssemblyLocation", string.Join("|", parts)));
+                        customProperties.Append(NewProperty(3, "_AssemblyName", "4E3C66D5-58D4-491E-A7D4-64AF99AF6E8B"));
+
+                        template.Save();
+                        template.Close();
+                    }
+                }
             }
+        }
 
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
+        private static OpenXmlElement[] NewProperty(int propertyId, string propertyName, string propertyValue)
+        {
+            var property = new CustomDocumentProperty
+            {
+                FormatId = "{D5CDD505-2E9C-101B-9397-08002B2CF9AE}",
+                PropertyId = propertyId,
+                Name = propertyName
+            };
 
-            // https://docs.microsoft.com/en-us/visualstudio/vsto/deploying-an-office-solution-by-using-windows-installer?view=vs-2019
-            // /assemblyLocation="[INSTALLDIR]ExcelWorkbook.dll"
-            // /deploymentManifestLocation="[INSTALLDIR]ExcelWorkbook.vsto"
-            // /documentLocation="[INSTALLDIR]ExcelWorkbook.xlsx"
-            // /solutionID="Your Solution ID"
+            var vTlpwstr1 = new Vt.VTLPWSTR
+            {
+                Text = propertyValue
+            };
+            property.Append(vTlpwstr1.ToArray());
 
-
-            ServerDocument.RemoveCustomization(args[0]);
-            //Uri deploymentManifestUri = new Uri(string.Join("|", parts));
-            //ServerDocument.AddCustomization(args[0], deploymentManifestUri);
-            ServerDocument.AddCustomization(args[0], parts[0], Guid.Parse(parts[1]), new Uri("https://www.chem4word.co.uk"), true, out parts);
-            Debugger.Break();
+            return property.ToArray();
         }
     }
 }
