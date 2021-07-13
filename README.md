@@ -32,6 +32,8 @@ Double click to open document from C:\Temp
 
 ![image](https://user-images.githubusercontent.com/13162784/125315600-3493c680-e32f-11eb-9067-88b9cb8e455f.png)
 
+Running code in project PostBuild/FullyQualifyAssemblyLocation solves the issue of splattering the dlls around
+
 If I save a document based on this template to my OneDrive folder I get this when double clicking on it.
 
 ![image](https://user-images.githubusercontent.com/13162784/125317456-ebdd0d00-e330-11eb-830c-3e52dc4c5658.png)
