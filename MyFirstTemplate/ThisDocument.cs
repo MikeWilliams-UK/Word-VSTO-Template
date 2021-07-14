@@ -29,7 +29,15 @@ namespace MyFirstTemplate
 
         private void ThisDocument_Shutdown(object sender, System.EventArgs e)
         {
-            Logger.Info("ThisDocument_Shutdown()");
+            try
+            {
+                Logger.Info($"ThisDocument_Shutdown({FullName})");
+            }
+            catch (Exception exception)
+            {
+                Logger.Error("ThisDocument_Shutdown()");
+                Logger.Exception(exception);
+            }
         }
 
         #region VSTO Designer generated code

@@ -17,8 +17,6 @@ namespace FullyQualifyAssemblyLocation
             string docxLocation = FullPath(args[0]);
             string vstoLocation = FullPath(args[1]);
 
-            Console.Write($"Modifying _AssemblyLocation of {docxLocation} to {vstoLocation}");
-
             using (WordprocessingDocument template = WordprocessingDocument.Open(docxLocation, true))
             {
                 if (template.CustomFilePropertiesPart != null)
@@ -30,12 +28,14 @@ namespace FullyQualifyAssemblyLocation
                         if (customProperty.InnerText.Contains("|vstolocal"))
                         {
                             parts = customProperty.InnerText.Split('|');
-                            parts[0] = vstoLocation;
                         }
                     }
 
                     if (parts != null)
                     {
+                        Console.Write($"Changing _AssemblyLocation of {docxLocation} from {parts[0]} to {vstoLocation}");
+                        parts[0] = vstoLocation;
+
                         customProperties.RemoveAllChildren();
                         customProperties.Append(NewProperty(2, "_AssemblyLocation", string.Join("|", parts)));
                         customProperties.Append(NewProperty(3, "_AssemblyName", "4E3C66D5-58D4-491E-A7D4-64AF99AF6E8B"));
