@@ -2,6 +2,8 @@
 using DocumentFormat.OpenXml.Packaging;
 using System;
 using System.IO;
+using System.Linq;
+using DocumentFormat.OpenXml;
 using Vt = DocumentFormat.OpenXml.VariantTypes;
 
 namespace FullyQualifyAssemblyLocation
@@ -51,6 +53,10 @@ namespace FullyQualifyAssemblyLocation
             return fi.FullName;
         }
 
+        // ----------------------------------------------------------------------------------------------------------------
+        // Do NOT be tempted to convert this to return OpenXmlElement[] to remove warnings as the code will no longer work!
+        // ----------------------------------------------------------------------------------------------------------------
+
         private static CustomDocumentProperty NewProperty(int propertyId, string propertyName, string propertyValue)
         {
             var property = new CustomDocumentProperty
@@ -66,7 +72,7 @@ namespace FullyQualifyAssemblyLocation
             };
             property.Append(vTlpwstr1);
 
-            return property;
+            return (property);
         }
     }
 }
