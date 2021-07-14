@@ -9,7 +9,17 @@ namespace MyFirstTemplate
 
         public static void Info(string message)
         {
-            WriteToFile($"{TimeStamp()} - {message}");
+            WriteToFile($"{TimeStamp()} - Info - {message}");
+        }
+
+        public static void Error(string message)
+        {
+            WriteToFile($"{TimeStamp()} - Error - {message}");
+        }
+
+        public static void Exception(Exception exception)
+        {
+            WriteToFile($"{TimeStamp()} - Exception - {exception.Message}");
         }
 
         private static string TimeStamp()

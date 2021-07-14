@@ -56,6 +56,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>dir ..\..\..\MyFirstTemplate\bin\Debug</PostBuildEvent>
+    <PostBuildEvent>rem dir ..\..\..\MyFirstTemplate\bin\Debug</PostBuildEvent>
   </PropertyGroup>
 </Project>

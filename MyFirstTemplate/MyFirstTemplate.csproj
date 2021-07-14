@@ -159,7 +159,10 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PostBuildEvent>rem dir</PostBuildEvent>
+    <PostBuildEvent>rem dir ..\..\..\FullyQualifyAssemblyLocation\bin\Debug
+rem dir
+..\..\..\FullyQualifyAssemblyLocation\bin\Debug\FullyQualifyAssemblyLocation.exe MyFirstTemplate.dotx MyFirstTemplate.vsto
+</PostBuildEvent>
   </PropertyGroup>
   <!--
     To modify your build process, add your task inside one of the targets below and uncomment it.

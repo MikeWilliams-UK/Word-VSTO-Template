@@ -16,7 +16,15 @@ namespace MyFirstTemplate
     {
         private void ThisDocument_Startup(object sender, System.EventArgs e)
         {
-            Logger.Info("ThisDocument_Startup()");
+            try
+            {
+                Logger.Info($"ThisDocument_Startup({FullName})");
+            }
+            catch (Exception exception)
+            {
+                Logger.Error("ThisDocument_Startup()");
+                Logger.Exception(exception);
+            }
         }
 
         private void ThisDocument_Shutdown(object sender, System.EventArgs e)

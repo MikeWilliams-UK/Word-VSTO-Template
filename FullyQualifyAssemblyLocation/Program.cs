@@ -1,8 +1,7 @@
 ﻿using DocumentFormat.OpenXml.CustomProperties;
 using DocumentFormat.OpenXml.Packaging;
+using System;
 using System.IO;
-using System.Linq;
-using DocumentFormat.OpenXml;
 using Vt = DocumentFormat.OpenXml.VariantTypes;
 
 namespace FullyQualifyAssemblyLocation
@@ -15,6 +14,8 @@ namespace FullyQualifyAssemblyLocation
 
             string docxLocation = FullPath(args[0]);
             string vstoLocation = FullPath(args[1]);
+
+            Console.Write($"Modifying _AssemblyLocation of {docxLocation} to {vstoLocation}");
 
             using (WordprocessingDocument template = WordprocessingDocument.Open(docxLocation, true))
             {
@@ -50,7 +51,7 @@ namespace FullyQualifyAssemblyLocation
             return fi.FullName;
         }
 
-        private static OpenXmlElement[] NewProperty(int propertyId, string propertyName, string propertyValue)
+        private static CustomDocumentProperty NewProperty(int propertyId, string propertyName, string propertyValue)
         {
             var property = new CustomDocumentProperty
             {
@@ -63,9 +64,9 @@ namespace FullyQualifyAssemblyLocation
             {
                 Text = propertyValue
             };
-            property.Append(vTlpwstr1.ToArray());
+            property.Append(vTlpwstr1);
 
-            return property.ToArray();
+            return property;
         }
     }
 }
