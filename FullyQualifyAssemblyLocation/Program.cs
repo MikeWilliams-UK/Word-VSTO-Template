@@ -2,8 +2,6 @@
 using DocumentFormat.OpenXml.Packaging;
 using System;
 using System.IO;
-using System.Linq;
-using DocumentFormat.OpenXml;
 using Vt = DocumentFormat.OpenXml.VariantTypes;
 
 namespace FullyQualifyAssemblyLocation

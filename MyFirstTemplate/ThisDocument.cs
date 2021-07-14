@@ -1,14 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.Xml.Linq;
-using Microsoft.Office.Tools.Word;
-using Microsoft.VisualStudio.Tools.Applications.Runtime;
-using Office = Microsoft.Office.Core;
-using Word = Microsoft.Office.Interop.Word;
 
 namespace MyFirstTemplate
 {
@@ -18,11 +8,11 @@ namespace MyFirstTemplate
         {
             try
             {
-                Logger.Info($"ThisDocument_Startup({FullName})");
+                Logger.Info($"{nameof(ThisDocument_Startup)}({FullName})");
             }
             catch (Exception exception)
             {
-                Logger.Error("ThisDocument_Startup()");
+                Logger.Error($"{nameof(ThisDocument_Startup)}()");
                 Logger.Exception(exception);
             }
         }
@@ -31,11 +21,11 @@ namespace MyFirstTemplate
         {
             try
             {
-                Logger.Info($"ThisDocument_Shutdown({FullName})");
+                Logger.Info($"{nameof(ThisDocument_Startup)}({FullName})");
             }
             catch (Exception exception)
             {
-                Logger.Error("ThisDocument_Shutdown()");
+                Logger.Error($"{nameof(ThisDocument_Startup)}()");
                 Logger.Exception(exception);
             }
         }
