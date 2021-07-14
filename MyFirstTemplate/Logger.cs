@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 
 namespace MyFirstTemplate
@@ -29,9 +30,16 @@ namespace MyFirstTemplate
 
         private static void WriteToFile(string message)
         {
-            using (StreamWriter w = File.AppendText(FileName))
+            try
             {
-                w.WriteLine(message);
+                using (StreamWriter w = File.AppendText(FileName))
+                {
+                    w.WriteLine(message);
+                }
+            }
+            finally
+            {
+                Debug.WriteLine(message);
             }
         }
     }
