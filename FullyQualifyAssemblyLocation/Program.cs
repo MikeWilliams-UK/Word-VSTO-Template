@@ -1,5 +1,6 @@
 ﻿using DocumentFormat.OpenXml.CustomProperties;
 using DocumentFormat.OpenXml.Packaging;
+using System.IO;
 using System.Linq;
 using DocumentFormat.OpenXml;
 using Vt = DocumentFormat.OpenXml.VariantTypes;
@@ -12,7 +13,10 @@ namespace FullyQualifyAssemblyLocation
         {
             string[] parts = null;
 
-            using (WordprocessingDocument template = WordprocessingDocument.Open(args[0], true))
+            string docxLocation = FullPath(args[0]);
+            string vstoLocation = FullPath(args[1]);
+
+            using (WordprocessingDocument template = WordprocessingDocument.Open(docxLocation, true))
             {
                 if (template.CustomFilePropertiesPart != null)
                 {
@@ -23,7 +27,7 @@ namespace FullyQualifyAssemblyLocation
                         if (customProperty.InnerText.Contains("|vstolocal"))
                         {
                             parts = customProperty.InnerText.Split('|');
-                            parts[0] = args[0].Replace(".dotx", ".vsto");
+                            parts[0] = vstoLocation;
                         }
                     }
 
@@ -38,6 +42,12 @@ namespace FullyQualifyAssemblyLocation
                     }
                 }
             }
+        }
+
+        private static string FullPath(string relativePath)
+        {
+            var fi = new FileInfo(relativePath);
+            return fi.FullName;
         }
 
         private static OpenXmlElement[] NewProperty(int propertyId, string propertyName, string propertyValue)
